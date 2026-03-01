@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Netbums\LaravelOnpay\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelOnpayCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-onpay';
 
     public $description = 'My command';
 
