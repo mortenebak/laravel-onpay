@@ -2,9 +2,9 @@
 
 namespace Netbums\LaravelOnpay;
 
+use Netbums\LaravelOnpay\Commands\LaravelOnpayCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Netbums\LaravelOnpay\Commands\LaravelOnpayCommand;
 
 class LaravelOnpayServiceProvider extends PackageServiceProvider
 {
