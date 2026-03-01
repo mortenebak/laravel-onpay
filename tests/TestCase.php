@@ -1,37 +1,22 @@
 <?php
 
-namespace Netbums\LaravelOnpay\Tests;
+namespace Netbums\Onpay\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Netbums\Onpay\OnpayServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Netbums\LaravelOnpay\LaravelOnpayServiceProvider;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
+    protected function getPackageProviders($app): array
     {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Netbums\\LaravelOnpay\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
+        return [OnpayServiceProvider::class];
     }
 
-    protected function getPackageProviders($app)
+    protected function getEnvironmentSetUp($app): void
     {
-        return [
-            LaravelOnpayServiceProvider::class,
-        ];
-    }
-
-    public function getEnvironmentSetUp($app)
-    {
-        config()->set('database.default', 'testing');
-
-        /*
-         foreach (\Illuminate\Support\Facades\File::allFiles(__DIR__ . '/../database/migrations') as $migration) {
-            (include $migration->getRealPath())->up();
-         }
-         */
+        $app['config']->set('onpay.api_token', 'test-api-token');
+        $app['config']->set('onpay.gateway_id', '20007895654');
+        $app['config']->set('onpay.secret', 'e88ebc73104651e3c8ee9af666c19b0626c9ecacd7f8f857e3633e355776baad92e67b7faf9b87744f8c6ce4303978ed65b4165f29534118c882c0fd95f52d0c');
+        $app['config']->set('onpay.base_url', 'https://api.onpay.io');
     }
 }
